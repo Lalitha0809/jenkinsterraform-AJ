@@ -1,0 +1,28 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('GitCheckout') {
+            steps {
+                git credentialsId: 'd8d5c56e-13c8-4817-96dc-676edc33e85f', url: 'https://github.com/sivak243/JenkinsWebhook'
+            }
+        }
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    def dockerImage = docker.build("my-docker-image:latest", ".")
+
+                    // Additional steps like tagging and pushing the image could go here.
+                }
+            }
+        }
+        stage('Docker Run') {
+            steps {
+                script {
+                    def containerId = docker.image("my-docker-image:latest").run('-it')
+                    echo "Docker container started with ID: ${containerId}"
+                }
+            }
+        }
+    }
+}
