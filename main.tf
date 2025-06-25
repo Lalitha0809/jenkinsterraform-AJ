@@ -17,7 +17,7 @@ resource "aws_instance" "LinuxServerEC2" {
      
         ami =var.ami
         instance_type = var.instancetype
-        key_name = "1997" 
+        key_name = "MINI" 
         
         subnet_id = var.Subnet
         vpc_security_group_ids = [var.SecurityGroup]
