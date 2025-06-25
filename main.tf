@@ -6,7 +6,7 @@ locals{
 
 terraform {
   backend "s3" {
-    bucket         = "myminiprojectbucket23"
+    bucket         = "bucketforproject-123"
     key            = "terraform.tfstate"
     region         = "ap-south-1"
    
