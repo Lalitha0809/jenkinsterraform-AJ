@@ -2,7 +2,7 @@
 variable "Subnet" {
   description = "assigning the Subnet ID"
   type = string
-  default = "subnet-057beb5ccba3e9440"
+  default = "subnet-03d44f5f4eda2f9df"
   }
 
 
@@ -10,7 +10,7 @@ variable "Subnet" {
 variable "SecurityGroup" {
   description = "assigning the SecurityGroup ID"
   type = string
-  default = "sg-03c1849f6e41d2f97"
+  default = "sg-064c56b8789b4987a"
   }
 
   variable "instancetype" {
@@ -22,7 +22,7 @@ variable "SecurityGroup" {
   variable "ami" {
   description = "assigning ami"
   type = string
-  default = "ami-02eb7a4783e7e9317"
+  default = "ami-0b09627181c8d5778"
   }
 
   variable "ProjectName" {
