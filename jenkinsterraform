@@ -2,27 +2,29 @@ pipeline {
     agent any
 
     stages {
-        stage('GitCheckout') {
+        stage('Checkout') {
             steps {
-                git credentialsId: 'd8d5c56e-13c8-4817-96dc-676edc33e85f', url: 'https://github.com/sivak243/JenkinsWebhook'
+            checkout scm
             }
         }
-        stage('Build Docker Image') {
+        
+        stage ("terraform init") {
             steps {
-                script {
-                    def dockerImage = docker.build("my-docker-image:latest", ".")
-
-                    // Additional steps like tagging and pushing the image could go here.
-                }
+                sh ('terraform init -reconfigure') 
             }
         }
-        stage('Docker Run') {
+        stage ("terraform plan") {
             steps {
-                script {
-                    def containerId = docker.image("my-docker-image:latest").run('-it')
-                    echo "Docker container started with ID: ${containerId}"
-                }
+                sh ('terraform plan') 
             }
+        }
+                
+        stage ("terraform Action") {
+            steps {
+                echo "Terraform action is --> ${action}"
+                sh ('terraform ${action} --auto-approve') 
+           }
         }
     }
 }
+
